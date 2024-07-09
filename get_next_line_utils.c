@@ -9,7 +9,7 @@ size_t	ft_strlen(const char *s)
 	{
 		counter++;
 	}
-	return(counter);
+	return(counter)
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
