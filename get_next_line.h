@@ -9,8 +9,8 @@
 
 typedef struct linked_list
 {
-	const char			*str;
-	struct link_list	*next;
+	char				*str;
+	struct linked_list	*next;
 }	node;
 
 char	*get_next_line(int fd);

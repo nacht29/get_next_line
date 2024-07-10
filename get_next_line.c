@@ -5,7 +5,7 @@ char	*get_next_line(int fd)
 	static node	*head;
 	char		*line;
 
-	if (fd = 0)
+	if (fd == 0)
 		return (NULL);
 	head = (node *)malloc(sizeof(node));
 	if (!head)
@@ -38,6 +38,7 @@ char	*extract_line(node **lst)
 	static char	*line;
 
 	current = *lst;
+	line = ft_strdup("");
 	while (current)
 	{
 		temp = current->next;
