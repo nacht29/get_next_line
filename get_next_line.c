@@ -42,7 +42,7 @@ char	*extract_line(node **lst)
 	{
 		temp = current->next;
 		line = ft_strjoin(line, current->str);
-		free(current);
+		free_node(current);
 		current = temp;
 	}
 	return (line);
