@@ -41,53 +41,58 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (final_str);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-	char	*holder;
+	char	ref;
+	char	*temp;
 
-	i = 0;
-	holder = malloc(ft_strlen(src) + 1);
-	if (!holder)
-		return(NULL);
-	while (src[i])
+	ref = (char)c;
+	temp = (char *)s;
+	while (*temp)
 	{
-		holder[i] = src[i];
+		if (*temp == ref)
+			return (temp);
+		temp++;
+	}
+	if (c == '\0')
+		return (temp);
+	return (NULL);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*holder;
+	size_t	i;
+	size_t	strt;
+
+	if (!s)
+		return (NULL);
+	strt = (size_t)start;
+	if (strt > ft_strlen(s))
+		return (ft_strjoin("", "")); //use strdup here
+	if (len > (ft_strlen(s) - strt + 1))
+		holder = malloc(ft_strlen(s) - strt + 2);
+	else
+		holder = malloc(len + 1);
+	if (!holder)
+		return (NULL);
+	i = 0;
+	while (i < len && s[strt + i] != '\0')
+	{
+		holder[i] = s[strt + i];
 		i++;
 	}
-	holder[i] = '\0';
-	return(holder);
+	holder[len] = '\0';
+	return (holder);
 }
 
-node	*create_node(const char *str)
+int	find_newline(node *lst)
 {
-	node	*new_node = (node *)malloc(sizeof(node));
-	if (!new_node)
-		return(NULL);
-	new_node->str = ft_strdup(str);
-	if (!new_node->str)
+	while (lst)
 	{
-		free(new_node);
-		return(NULL);
+		if (ft_strchr(lst->str, '\n'))
+			return (TRUE);
+		lst = lst->next;
 	}
-	new_node->next = NULL;
-	return(new_node);
-}
-
-void	free_node(node **lst)
-{
-	node *temp;
-	node *current;
-
-	if (!lst || !(*lst))
-		return ;
-	current = *lst;
-	while (current)
-	{
-		temp = current->next;
-		free(current->str);
-		free(current);
-		current = temp;
-	}
-	(*lst) = NULL;
+	return (FALSE);
 }

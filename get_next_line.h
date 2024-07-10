@@ -5,7 +5,12 @@
 # include <unistd.h>
 # include <stddef.h>
 
-# define BUFFER_SIZE 20
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 20
+# endif
+
+# define TRUE 0
+#define FALSE 1
 
 typedef struct linked_list
 {
@@ -14,11 +19,7 @@ typedef struct linked_list
 }	node;
 
 char	*get_next_line(int fd);
-void	add_node(node **lst, node *new);
-char	*extract_line(node **lst);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *src);
-node	*create_node(const char *str);
-void	free_node(node **lst);
 #endif

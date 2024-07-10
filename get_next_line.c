@@ -2,49 +2,64 @@
 
 char	*get_next_line(int fd)
 {
-	static node	*head;
-	char		*line;
+	static node	*lst;
+	char		*next_line;
+	char		*temp_buff;
 
-	if (fd == 0)
-		return (NULL);
-	head = (node *)malloc(sizeof(node));
-	if (!head)
-		return(NULL);
-	line = extract_line(&head);
-	return (line);
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+		return (NULL); 
+	lst = NULL;
+	temp_buff = NULL;
+	read_to_list(lst, fd);
+	// next_line = extract_line(lst, &temp_buff);
+	// free_list(&list);
+	if (temp_buff != NULL)
+		add_node(&lst, temp_buff);
+	return (next_line);
 }
 
-void	add_node(node **lst, node *new)
+static void	read_to_list(node *lst, int fd)
 {
+	int		char_read;
+	char	*buffer;
+
+	while (find_newline(*lst) == FALSE)
+	{
+		buffer = malloc(BUFFER_SIZE + 1);
+		char_read = read(fd, buffer, BUFFER_SIZE);
+		if (!char_read)
+		{
+			free(buffer);
+			return ;
+		}
+		buffer[char_read] = '\0';
+		add_node(lst, buffer);
+	}
+}
+
+static void	add_node(node **lst, char *buffer)
+{
+	node	*new_node;
 	node	*end;
 
+	new_node = (node *)malloc(sizeof(node));
+	if (!new_node)
+		return (NULL);
+	new_node->str = buffer;
+	new_node->next = NULL;
+	end = lst;
 	if (*lst == NULL)
 	{
-		*lst = new;
+		*lst = new_node;
 		return ;
 	}
-	if (new == NULL)
-		return ;
-	while ((*lst)->next != NULL)
-		(*lst) = (*lst)->next;
-	end = (*lst);
-	end->next = new;
+	end = *lst;
+	while (end->next != NULL)
+		end = end->next;
+	end->next = new_node;
 }
 
-char	*extract_line(node **lst)
+char	*extract_line(node *lst, char **temp_buff)
 {
-	node		*current;
-	node		*temp;
-	static char	*line;
-
-	current = *lst;
-	line = ft_strdup("");
-	while (current)
-	{
-		temp = current->next;
-		line = ft_strjoin(line, current->str);
-		free_node(current);
-		current = temp;
-	}
-	return (line);
+	;
 }
