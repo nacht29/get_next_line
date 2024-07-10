@@ -18,7 +18,7 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-static void	read_to_list(node *lst, int fd)
+static void	read_to_list(node *lst, int fd
 {
 	int		char_read;
 	char	*buffer;
