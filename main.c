@@ -1,10 +1,20 @@
 #include "get_next_line.h"
-#include <stdio.h>
 
-int main(void)
+int main(int argc, char* argv[])
 {
-	char *line = ft_strdup("");
-
-	line = ft_strjoin(line, "hi\n");
-	write(1, line, 5);
+	char	*line;
+	int		fd;
+	
+	if (argc < 2)
+		return (1);
+	fd = open(argv[1], O_RDONLY);
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	line = get_next_line(fd);
+	printf("%s\n", line);
+	close(fd);
+	return (0);
 }

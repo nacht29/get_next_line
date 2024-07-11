@@ -4,6 +4,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
+#include <stdio.h>
+#include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 20
@@ -19,6 +21,11 @@ typedef struct linked_list
 }	node;
 
 char	*get_next_line(int fd);
+void	read_to_list(node *lst, int fd);
+void	add_node(node **lst, char *buffer);
+char	*extract_line(node *lst, char **temp_buff);
+void	free_list(node **lst);
+
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);

@@ -1,6 +1,7 @@
 TESTNAME = gnl.exe
 
-SRC = 	$(wildcard *.c)
+SRC = 	get_next_line.c \
+		get_next_line_utils.c
 
 CC              = cc
 RM              = rm -f
@@ -9,7 +10,7 @@ CFLAGS          = -Wall -Wextra -Werror
 test: $(TESTNAME)
 
 $(TESTNAME):
-	$(CC) $(CFLAGS) $(SRC) -o $(TESTNAME) && ./$(TESTNAME)
+	$(CC) $(CFLAGS) $(SRC) main.c -o $(TESTNAME) && ./$(TESTNAME) test.txt
 
 clean:
 	@$(RM) *.o
