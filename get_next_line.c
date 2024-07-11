@@ -29,7 +29,6 @@ int	read_to_list(node *lst, int fd)
 	{
 		buffer = malloc(BUFFER_SIZE + 1);
 		char_read = read(fd, buffer, BUFFER_SIZE);
-		printf("%s\n", buffer);
 		if (char_read <= 0)
 		{
 			free(buffer);
@@ -79,7 +78,7 @@ char	*extract_line(node *lst, char **temp_buff)
 			while (lst->str[i] != '\n')
 				i++;
 			line = ft_strjoin(line, ft_substr(lst->str, 0, i + 1));
-			*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - i + 1));
+			*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - i - 1));
 		}
 		lst = lst->next;
 	}
