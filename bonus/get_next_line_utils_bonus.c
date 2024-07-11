@@ -84,7 +84,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (holder);
 }
 
-int	find_newline(node *lst)
+int	find_newline(node *lst, int fd)
 {
 	while (lst)
 	{
