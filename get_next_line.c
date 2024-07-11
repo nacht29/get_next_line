@@ -3,29 +3,38 @@
 char	*get_next_line(int fd)
 {
 	static node	*lst;
-	char	*temp_buff;
-	char	*next_line;
+	char		*temp_buff;
+	char		*next_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL); 
 	lst = NULL;
 	temp_buff = NULL;
-	if (read_to_list(lst, fd) == FALSE)
+	if (read_to_list(&lst, fd) == FALSE)
 		return (NULL);
 	next_line = extract_line(lst, &temp_buff);
+	/*
+	static node	*temp;
+	temp = lst;
+	while (temp != NULL)
+	{
+		printf("%s\n", temp->str);
+		temp = temp->next;
+	}
+	*/
 	free_list(&lst);
 	if (temp_buff != NULL)
 		add_node(&lst, temp_buff);
 	return (next_line);
 }
 
-int	read_to_list(node *lst, int fd)
+int	read_to_list(node **lst, int fd)
 {
 	int		char_read;
 	char	*buffer;
 
 	char_read = 0;
-	while (find_newline(lst) == FALSE)
+	while (find_newline(*lst) == FALSE)
 	{
 		buffer = malloc(BUFFER_SIZE + 1);
 		char_read = read(fd, buffer, BUFFER_SIZE);
@@ -35,7 +44,7 @@ int	read_to_list(node *lst, int fd)
 			return (FALSE);
 		}
 		buffer[char_read] = '\0';
-		add_node(&lst, buffer);
+		add_node(lst, buffer);
 	}
 	return (TRUE);
 }
@@ -51,12 +60,11 @@ void	add_node(node **lst, char *buffer)
 	new_node->str = buffer;
 	new_node->next = NULL;
 	end = *lst;
-	if (*lst == NULL)
+	if (end == NULL)
 	{
 		*lst = new_node;
 		return ;
 	}
-	end = *lst;
 	while (end->next != NULL)
 		end = end->next;
 	end->next = new_node;
