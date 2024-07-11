@@ -1,4 +1,4 @@
-TESTNAME = gnl.exe
+NAME = gnl.exe
 
 SRC = 	get_next_line.c \
 		get_next_line_utils.c
@@ -7,17 +7,20 @@ CC              = cc
 RM              = rm -f
 CFLAGS          = -Wall -Wextra -Werror
 
-test: $(TESTNAME)
+test: $(NAME)
 
-$(TESTNAME):
-	$(CC) $(CFLAGS) $(SRC) main.c -o $(TESTNAME) && ./$(TESTNAME) test.txt
+buf-def: $(NAME)
+	$(CC) $(CFLAGS) -D BUFFER_SIZE=50 $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt
+
+$(NAME):
+	$(CC) $(CFLAGS) $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt
 
 clean:
 	@$(RM) *.o
 	@$(RM) $(OBJS)
 
 fclean: clean
-	@$(RM) $(TESTNAME)
+	@$(RM) $(NAME)
 	@clear
 
 re: fclean all

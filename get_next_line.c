@@ -4,7 +4,7 @@ char	*get_next_line(int fd)
 {
 	static node	*lst;
 	char	*temp_buff;
-	char		*next_line;
+	char	*next_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL); 
