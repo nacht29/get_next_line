@@ -2,3 +2,19 @@ This project will not only allow you to add a very convenient function to your c
 but it will also make you learn a highly interesting 
 new concept in C programming: static 
 variables.
+
+Yachan printf code is good and rigorous overall . There 
+are some improvements to be made on his code readability when it comes to your Makefile formatting, variable naming, and file naming. Try to use more descriptive names for variables 
+(eg: hex-hexa, out-address, !s - s==NULL).
+Consistent spacing in your Makefile and consistent file name 
+conventions (eg: instead of put_uint, name it as putuint or vice 
+versa, convert everything to put_chr, put_nbr and so on). These 
+practices will help other devs understand your code a lot better
+ during 
+collaboration and help future you too whenever you need to refer back 
+to your code. The uintptr_t type is something new to me, which makes a 
+lot of sense to be used as the proper data type for pointers as I was 
+struggling to set logical data type. And checking for the type of OS 
+to determine null values for string and the valid formats for printf is 
+something I never thought of which was really cool to see! Keep up the
+ good work!

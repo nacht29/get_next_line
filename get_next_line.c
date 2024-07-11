@@ -3,14 +3,15 @@
 char	*get_next_line(int fd)
 {
 	static node	*lst;
-	static char	*temp_buff;
+	char	*temp_buff;
 	char		*next_line;
 
-	if (fd <= 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL); 
 	lst = NULL;
 	temp_buff = NULL;
-	read_to_list(lst, fd);
+	if (read_to_list(lst, fd) == FALSE)
+		return (NULL);
 	next_line = extract_line(lst, &temp_buff);
 	free_list(&lst);
 	if (temp_buff != NULL)
@@ -18,7 +19,7 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-void	read_to_list(node *lst, int fd)
+int	read_to_list(node *lst, int fd)
 {
 	int		char_read;
 	char	*buffer;
@@ -29,14 +30,15 @@ void	read_to_list(node *lst, int fd)
 		buffer = malloc(BUFFER_SIZE + 1);
 		char_read = read(fd, buffer, BUFFER_SIZE);
 		printf("%s\n", buffer);
-		if (!char_read)
+		if (char_read <= 0)
 		{
 			free(buffer);
-			return ;
+			return (FALSE);
 		}
 		buffer[char_read] = '\0';
 		add_node(&lst, buffer);
 	}
+	return (TRUE);
 }
 
 void	add_node(node **lst, char *buffer)
