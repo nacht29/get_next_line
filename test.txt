@@ -1,20 +1,25 @@
-This project will not only allow you to add a very convenient function to your collection, 
-but it will also make you learn a highly interesting 
-new concept in C programming: static 
-variables.
+Never Cage a Fledgling
 
-Yachan printf code is good and rigorous overall . There 
-are some improvements to be made on his code readability when it comes to your Makefile formatting, variable naming, and file naming. Try to use more descriptive names for variables 
-(eg: hex-hexa, out-address, !s - s==NULL).
-Consistent spacing in your Makefile and consistent file name 
-conventions (eg: instead of put_uint, name it as putuint or vice 
-versa, convert everything to put_chr, put_nbr and so on). These 
-practices will help other devs understand your code a lot better
- during 
-collaboration and help future you too whenever you need to refer back 
-to your code. The uintptr_t type is something new to me, which makes a 
-lot of sense to be used as the proper data type for pointers as I was 
-struggling to set logical data type. And checking for the type of OS 
-to determine null values for string and the valid formats for printf is 
-something I never thought of which was really cool to see! Keep up the
- good work!
+Trapped in a dark cage, so cramped it was hard to stretch your arms.  Your ankles are bound by shackles, so tight, slight movements bring agony.  There was little light, coming through a tiny peephole.  It was hard to breathe, in such a depressing and suffocating space.  As you grow, your whole body pushes against the cold steel. The sturdy walls do not budge, and since you can’t grow out of it, you shrink into it.  Stuck there forever, growth became stagnant, view obscured, never to experience the outside world. 
+
+Shall such atrocity befall an individual, one’s life will be nothing short of miserable. Yet unbelievable as it is, there are people imprisoned within such tragedy.  Such is the life of LingLing, a teenager who’s won several global awards (nothing to be proud of, at least according to her parents), top of her school ever since she enrolled in one, beautiful, obedient, talented. 
+
+She had her violin lessons since 3, when most toddlers were still in warm embraces. She picked up chess at 4, and received home tutorings from the best teachers. Above all, she lived under strict discipline: no phones until she was 12, bed time by 10, and schedules riddled with chess, violin and academics. Living under constant supervision of her parents, there was no trace of liberty present in her household. Parents and children envied her overachievement, yet who knew the price she paid. 
+
+With her bursting schedule, she had no time interacting with people – not even peers – not that her parents deemed it necessary anyway for “her focus deserves better investments”.  She knew no trends, no gossips, no makeup hacks...  LingLing never felt secure taking the initiative to befriend someone, lacking both the experience and topics to fit in. To disguise her insecurities she put on a façade of cold demeanour that when coupled with her achievements and her status as the teachers’ pet did not make her life any easier.  Hostile words and gazes sparked by jealousy had become a daily basis.  Whenever she relayed the problems to her parents, she received the same cold shoulders: “Endure, grow up, you don’t have time for child’s play”.  How could she grow if her life maintained the same monotonous pattern? 
+
+	At thirteen, LingLing reached her first breaking point. She mustered enough courage to lie to her parents in order to skip class and join a friend she made at the music academy for hot pot and a movie. She lost sleep for the first time, anticipating her trip with the first person willing to approach her. 
+
+The plan went smoothly. She finally had a taste of liberty, exploring a world of vibrant colours, one not exclusive to fret boards, chess pieces and books.  Only if such moments persisted could she abandon her life as a recluse and welcome social life.  Alas, her parents discovered everything in her preciously-kept diary, her oasis of privacy.  The consequences were devastating:  reprimanded, grounded, doubled practice and study sessions, gadgets confiscated. Her parents brought the matter to the academy – her ultimate despair! When LingLing returned, she sensed not only distance between her and the once-called friend but more hostility. Her dreams slipped out of her grasp… Until 18.  She’d had enough, packed her bags in secret, grabbed some cash and fled her home midnight.  Only then did she realise how underprepared she had been.  
+
+Clueless, she spent her night on some park bench.  She came across a homeless man next morning who was “kind” enough to inform her of a cheap rental room nearby.  The room offered the most basic setups: a bed and a washroom.  Thick dust settled on every surface and every piece of fabric is moth-eaten.  The environment was unpleasant, but enough to get by. 
+
+She fell into deeper turmoil the longer she left home with her glaring incapabilities: cooking, cleaning, doing laundries, and she was low on cash.  Penniless, she wandered the streets and ran into a job offer.  The job was simple – just serving wine.  Skeptical, nonetheless, she acquiesced it for the cash. 
+
+The job started off perfectly, but soon the customers grew obnoxious.  Some demanded her company, some even tried to touch her. On the verge of exploding, she frantically looked around yet no one seemed to notice.  Much to her horror, some of her “colleagues” even started sitting on the customers’ laps.  Just when she thought all hopes were lost, her employer approached and encouraged her to join her clients.  He assured her that that was just the additional part of her job, a totally voluntary part that may generate extra cash.  Reluctantly, she sat next to a bulky man older than her father and took a sip of the wine he offered.  It tasted foreign; her first alcohol.  Unpleasant, but with everyone cheering, she took yet another sip, then another sip… until the world faded into oblivion. 
+
+Years later, her parents tracked down the very bar where she worked, only to see a slender figure pole-dancing on the stage, teasing her audience with words so degrading and vulgar. Her parents paled in sheer horror as they recognised the familiar voice, and finally collapsed when they saw the unmistakable hazel eyes ablaze with coy flames. Is there still hope for this crippled soul?
+
+Humans, at the end of the day, are no different than animals.  In a world where the law of the jungle prevails, overprotection equates inevitable peril as the overprotected ones have accustomed to the safe heaven they live in thus oblivious to the menace of the outside world. It is through liberty and exposure that we can observe and brace ourselves for what reality has to offer, regardless how cruel it can be. Awareness is always better than ignorance, just as prevention is better that cure. The protective barrier that confines the protected to seclusion only results in retaliation, and when the caged bird breaks free, it will only plummet into eternal despair in the hands of the hunter, for it has long since lost its ability to spread its wings and fly.
+
+
