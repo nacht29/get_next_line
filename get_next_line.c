@@ -13,7 +13,7 @@ char	*get_next_line(int fd)
 	if (read_to_list(&lst, fd) == FALSE)
 		return (NULL);
 	next_line = extract_line(lst, &temp_buff);
-	/*
+	
 	static node	*temp;
 	temp = lst;
 	while (temp != NULL)
@@ -21,7 +21,7 @@ char	*get_next_line(int fd)
 		printf("%s\n", temp->str);
 		temp = temp->next;
 	}
-	*/
+	
 	free_list(&lst);
 	if (temp_buff != NULL)
 		add_node(&lst, temp_buff);
@@ -57,7 +57,7 @@ void	add_node(node **lst, char *buffer)
 	new_node = (node *)malloc(sizeof(node));
 	if (!new_node)
 		return ;
-	new_node->str = ft_strjoin("" , buffer);
+	new_node->str = ft_strjoin("", buffer);
 	new_node->next = NULL;
 	end = *lst;
 	if (end == NULL)

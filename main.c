@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     fd = open(argv[1], O_RDONLY);
     while ((line = get_next_line(fd)) != NULL)
     {
-        printf("%s\n", line);
+        // printf("%s", line);
         free(line);
     }
     if (line == NULL)
