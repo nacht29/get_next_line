@@ -39,7 +39,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (final_str);
 }
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strchr(const char *s, int c)
 {
 	char	ref;
 	char	*temp;
@@ -49,12 +49,10 @@ char	*ft_strchr(const char *s, int c)
 	while (*temp)
 	{
 		if (*temp == ref)
-			return (temp);
+			return (TRUE);
 		temp++;
 	}
-	if (c == '\0')
-		return (temp);
-	return (NULL);
+	return (FALSE);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)

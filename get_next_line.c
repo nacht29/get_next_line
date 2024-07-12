@@ -78,7 +78,7 @@ char	*extract_line(node *lst, char **temp_buff)
 	line = ft_strjoin("","");
 	while (lst)
 	{
-		if (ft_strchr(lst->str, '\n') == NULL)
+		if (ft_strchr(lst->str, '\n') == FALSE)
 			line = ft_strjoin(line, lst->str);
 		else
 		{
