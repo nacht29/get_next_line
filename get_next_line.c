@@ -57,7 +57,7 @@ void	add_node(node **lst, char *buffer)
 	new_node = (node *)malloc(sizeof(node));
 	if (!new_node)
 		return ;
-	new_node->str = buffer;
+	new_node->str = ft_strjoin("" , buffer);
 	new_node->next = NULL;
 	end = *lst;
 	if (end == NULL)
