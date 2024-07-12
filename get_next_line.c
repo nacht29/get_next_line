@@ -18,7 +18,7 @@ char	*get_next_line(int fd)
 	temp = lst;
 	while (temp != NULL)
 	{
-		printf("%s\n", temp->str);
+		printf("%s", temp->str);
 		temp = temp->next;
 	}
 	

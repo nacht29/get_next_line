@@ -9,7 +9,7 @@ CFLAGS          = -Wall -Wextra -Werror
 
 test: $(NAME)
 
-buf-def: 
+buf: 
 	$(CC) $(CFLAGS) -D BUFFER_SIZE=10 $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt
 
 $(NAME):
