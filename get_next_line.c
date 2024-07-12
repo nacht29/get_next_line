@@ -7,13 +7,13 @@ char	*get_next_line(int fd)
 	char		*next_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
-		return (NULL); 
+		return (NULL);
 	lst = NULL;
 	temp_buff = NULL;
 	if (read_to_list(&lst, fd) == FALSE)
 		return (NULL);
 	next_line = extract_line(lst, &temp_buff);
-	
+	/*
 	static node	*temp;
 	temp = lst;
 	while (temp != NULL)
@@ -21,7 +21,7 @@ char	*get_next_line(int fd)
 		printf("%s", temp->str);
 		temp = temp->next;
 	}
-	
+	*/
 	free_list(&lst);
 	if (temp_buff != NULL)
 		add_node(&lst, temp_buff);

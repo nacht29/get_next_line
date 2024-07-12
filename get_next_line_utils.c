@@ -86,7 +86,7 @@ int	find_newline(node *lst)
 {
 	while (lst)
 	{
-		if (ft_strchr(lst->str, '\n'))
+		if (ft_strchr(lst->str, '\n') == TRUE)
 			return (TRUE);
 		lst = lst->next;
 	}
