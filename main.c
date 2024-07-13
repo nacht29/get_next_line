@@ -1,5 +1,6 @@
 #include "get_next_line.h"
 
+
 int main(int argc, char *argv[])
 {
 	int		fd;
@@ -11,7 +12,7 @@ int main(int argc, char *argv[])
 
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("%s", line);
+		// printf("%s", line);
 		free(line);
 	}
 

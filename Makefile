@@ -16,7 +16,7 @@ $(NAME):
 	$(CC) $(CFLAGS) $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt
 
 clean:
-	@$(RM) *.o
+	@$(RM) *.o *.out
 	@$(RM) $(OBJS)
 
 fclean: clean
