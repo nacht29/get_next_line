@@ -10,10 +10,10 @@ CFLAGS          = -Wall -Wextra -Werror
 test: $(NAME)
 
 buf: 
-	$(CC) $(CFLAGS) -D BUFFER_SIZE=2 $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt
+	$(CC) $(CFLAGS) -D BUFFER_SIZE=2 $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt | cat -e
 
 $(NAME):
-	$(CC) $(CFLAGS) $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt
+	$(CC) $(CFLAGS) $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt | cat -e
 
 clean:
 	@$(RM) *.o *.out

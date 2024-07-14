@@ -10,7 +10,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	lst = NULL;
 	temp_buff = NULL;
-	if (read_to_list(&lst, fd) == FALSE)
+	read_to_list(&lst, fd);
+	if (lst == NULL)
 		return (NULL);
 	next_line = extract_line(lst, &temp_buff);
 	/*
@@ -28,7 +29,7 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-int	read_to_list(node **lst, int fd)
+void	read_to_list(node **lst, int fd)
 {
 	int		char_read;
 	char	*buffer;
@@ -41,12 +42,11 @@ int	read_to_list(node **lst, int fd)
 		if (char_read <= 0)
 		{
 			free(buffer);
-			return (FALSE);
+			return ;
 		}
 		buffer[char_read] = '\0';
 		add_node(lst, buffer);
 	}
-	return (TRUE);
 }
 
 void	add_node(node **lst, char *buffer)
@@ -86,7 +86,10 @@ char	*extract_line(node *lst, char **temp_buff)
 			while (lst->str[i] != '\n')
 				i++;
 			line = ft_strjoin(line, ft_substr(lst->str, 0, i + 1));
-			*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - i - 1));
+			if ((lst->str)[i + 1] != '\0')
+				*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - (i + 1)));
+			return (line);
+			// printf("@@%s,%s\n", line, *temp_buff);
 		}
 		lst = lst->next;
 	}

@@ -11,8 +11,8 @@
 #  define BUFFER_SIZE 20
 # endif
 
-# define TRUE 0
-#define FALSE 1
+# define TRUE 1
+#define FALSE 0
 
 typedef struct linked_list
 {
@@ -21,7 +21,7 @@ typedef struct linked_list
 }	node;
 
 char	*get_next_line(int fd);
-int		read_to_list(node **lst, int fd);
+void	read_to_list(node **lst, int fd);
 void	add_node(node **lst, char *buffer);
 char	*extract_line(node *lst, char **temp_buff);
 void	free_list(node **lst);
