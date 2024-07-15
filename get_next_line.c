@@ -3,27 +3,27 @@
 char	*get_next_line(int fd)
 {
 	static node	*lst;
+	node		*current_node;
+	node		*temp_node;
 	char		*temp_buff;
 	char		*next_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL);
-	// lst = NULL;
 	temp_buff = NULL;
 	read_to_list(&lst, fd);
 	if (lst == NULL)
 		return (NULL);
 	next_line = extract_line(lst, &temp_buff);
-	/*
-	static node	*temp;
-	temp = lst;
-	while (temp != NULL)
+	current_node = lst;
+	while (current_node)
 	{
-		printf("%s", temp->str);
-		temp = temp->next;
+		temp_node = current_node->next;
+		free(current_node->str);
+		free(current_node);
+		current_node = temp_node;
 	}
-	*/
-	free_list(&lst);
+	lst = NULL;
 	if (temp_buff != NULL)
 		add_node(&lst, temp_buff);
 	return (next_line);
@@ -46,6 +46,7 @@ void	read_to_list(node **lst, int fd)
 		}
 		buffer[char_read] = '\0';
 		add_node(lst, buffer);
+		free(buffer);
 	}
 }
 
@@ -70,46 +71,37 @@ void	add_node(node **lst, char *buffer)
 	end->next = new_node;
 }
 
-char	*extract_line(node *lst, char **temp_buff)
+char *extract_line(node *lst, char **temp_buff)
 {
-	char	*line;
-	size_t	i;
+	char *line;
+	char *temp;
+	size_t i;
 
-	line = ft_strjoin("","");
+	line = malloc(1);
+	line[0] = '\0';
 	while (lst)
 	{
 		if (ft_strchr(lst->str, '\n') == FALSE)
-			line = ft_strjoin(line, lst->str);
+		{
+			temp = ft_strjoin(line, lst->str);
+			free(line);
+			line = temp;
+		}
 		else
 		{
 			i = 0;
 			while (lst->str[i] != '\n')
 				i++;
-			line = ft_strjoin(line, ft_substr(lst->str, 0, i + 1));
+			temp = ft_substr(lst->str, 0, i + 1);
+			char *new_line = ft_strjoin(line, temp);
+			free(line);
+			free(temp);
+			line = new_line;
 			if ((lst->str)[i + 1] != '\0')
 				*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - (i + 1)));
 			return (line);
-			// printf("@@%s,%s\n", line, *temp_buff);
 		}
 		lst = lst->next;
 	}
 	return (line);
-}
-
-void	free_list(node **lst)
-{
-	node *temp;
-	node *current;
-
-	if (!lst || !(*lst))
-		return ;
-	current = *lst;
-	while (current)
-	{
-		temp = current->next;
-		free(current->str);
-		free(current);
-		current = temp;
-	}
-	(*lst) = NULL;
 }

@@ -1,4 +1,3 @@
-
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
@@ -65,12 +64,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	strt = (size_t)start;
-	if (strt > ft_strlen(s))
-		return (ft_strjoin("", "")); //use strdup here
-	if (len > (ft_strlen(s) - strt + 1))
-		holder = malloc(ft_strlen(s) - strt + 2);
-	else
-		holder = malloc(len + 1);
+	holder = malloc(len + 1);
 	if (!holder)
 		return (NULL);
 	i = 0;
