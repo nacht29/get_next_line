@@ -71,11 +71,28 @@ void	add_node(node **lst, char *buffer)
 	end->next = new_node;
 }
 
-char *extract_line(node *lst, char **temp_buff)
+static char	*process_newline_node(node *lst, char **temp_buff, char *line)
 {
-	char *line;
-	char *temp;
-	size_t i;
+	size_t	i;
+	char	*temp;
+	char	*new_line;
+
+	i = 0;
+	while (lst->str[i] != '\n')
+		i++;
+	temp = ft_substr(lst->str, 0, i + 1);
+	new_line = ft_strjoin(line, temp);
+	free(line);
+	free(temp);
+	if ((lst->str)[i + 1] != '\0')
+		*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - (i + 1)));
+	return new_line;
+}
+
+char	*extract_line(node *lst, char **temp_buff)
+{
+	char	*line;
+	char	*temp;
 
 	line = malloc(1);
 	line[0] = '\0';
@@ -89,16 +106,7 @@ char *extract_line(node *lst, char **temp_buff)
 		}
 		else
 		{
-			i = 0;
-			while (lst->str[i] != '\n')
-				i++;
-			temp = ft_substr(lst->str, 0, i + 1);
-			char *new_line = ft_strjoin(line, temp);
-			free(line);
-			free(temp);
-			line = new_line;
-			if ((lst->str)[i + 1] != '\0')
-				*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - (i + 1)));
+			line = process_newline_node(lst, temp_buff, line);
 			return (line);
 		}
 		lst = lst->next;
