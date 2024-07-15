@@ -8,7 +8,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL);
-	lst = NULL;
+	// lst = NULL;
 	temp_buff = NULL;
 	read_to_list(&lst, fd);
 	if (lst == NULL)
