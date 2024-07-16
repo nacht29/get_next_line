@@ -38,7 +38,6 @@ int read_to_list(node **lst, int fd)
 				return (1);
 			current = current->next;
 		}
-
 		buffer = malloc(BUFFER_SIZE + 1);
 		char_read = read(fd, buffer, BUFFER_SIZE);
 		if (char_read <= 0)
