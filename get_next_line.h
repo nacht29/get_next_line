@@ -21,7 +21,7 @@ typedef struct linked_list
 }	node;
 
 char	*get_next_line(int fd);
-void	read_to_list(node **lst, int fd);
+int		read_to_list(node **lst, int fd);
 void	add_node(node **lst, char *buffer);
 char	*extract_line(node *lst, char **temp_buff);
 void	free_list(node **lst);
@@ -30,5 +30,5 @@ size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-int		find_newline(node *lst);
+void	free_list(node **lst);
 #endif

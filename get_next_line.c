@@ -1,48 +1,50 @@
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
+char    *get_next_line(int fd)
 {
 	static node	*lst;
-	node		*current_node;
-	node		*temp_node;
 	char		*temp_buff;
 	char		*next_line;
+	int			read_result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL);
 	temp_buff = NULL;
-	read_to_list(&lst, fd);
-	if (lst == NULL)
+	read_result = read_to_list(&lst, fd);
+	if (read_result < 0 || (read_result == 0 && lst == NULL))
 		return (NULL);
 	next_line = extract_line(lst, &temp_buff);
-	current_node = lst;
-	while (current_node)
-	{
-		temp_node = current_node->next;
-		free(current_node->str);
-		free(current_node);
-		current_node = temp_node;
-	}
-	lst = NULL;
+	free_list(&lst);
 	if (temp_buff != NULL)
+	{
 		add_node(&lst, temp_buff);
+		free(temp_buff);
+	}
 	return (next_line);
 }
 
-void	read_to_list(node **lst, int fd)
+int read_to_list(node **lst, int fd)
 {
 	int		char_read;
 	char	*buffer;
+	node	*current;
 
-	char_read = 0;
-	while (find_newline(*lst) == FALSE)
+	while (1)
 	{
+		current = *lst;
+		while (current)
+		{
+			if (ft_strchr(current->str, '\n'))
+				return (1);
+			current = current->next;
+		}
+
 		buffer = malloc(BUFFER_SIZE + 1);
 		char_read = read(fd, buffer, BUFFER_SIZE);
 		if (char_read <= 0)
 		{
 			free(buffer);
-			return ;
+			return (char_read);
 		}
 		buffer[char_read] = '\0';
 		add_node(lst, buffer);
@@ -86,7 +88,7 @@ static char	*process_newline_node(node *lst, char **temp_buff, char *line)
 	free(temp);
 	if ((lst->str)[i + 1] != '\0')
 		*temp_buff = ft_substr(lst->str, (i + 1), (ft_strlen(lst->str) - (i + 1)));
-	return new_line;
+	return (new_line);
 }
 
 char	*extract_line(node *lst, char **temp_buff)

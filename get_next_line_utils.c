@@ -77,13 +77,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (holder);
 }
 
-int	find_newline(node *lst)
+void	free_list(node **lst)
 {
-	while (lst)
+	node *temp;
+	node *current;
+
+	if (!lst || !(*lst))
+		return ;
+	current = *lst;
+	while (current)
 	{
-		if (ft_strchr(lst->str, '\n') == TRUE)
-			return (TRUE);
-		lst = lst->next;
+		temp = current->next;
+		free(current->str);
+		free(current);
+		current = temp;
 	}
-	return (FALSE);
+	(*lst) = NULL;
 }
