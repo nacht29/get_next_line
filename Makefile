@@ -1,28 +1,32 @@
 NAME = gnl.exe
+BNAME = gnl_bonus.exe
 
 SRC = 	get_next_line.c \
 		get_next_line_utils.c
 
-CC              = cc
-RM              = rm -f
-CFLAGS          = -Wall -Wextra -Werror
+BSRC =	get_next_line_bonus.c \
+		get_next_line_utils_bonus.c
 
-test: $(NAME)
+CC			= cc
+RM			= rm -f
+CFLAGS		= -Wall -Wextra -Werror
+
+test: 
+	$(CC) $(CFLAGS) $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt | cat -e
 
 buf: 
 	$(CC) $(CFLAGS) -D BUFFER_SIZE=1 $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt | cat -e
 
-$(NAME):
-	$(CC) $(CFLAGS) $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt | cat -e
+b-test:
+	$(CC) $(CFLAGS) $(BSRC) b-main.c -o $(BNAME) && ./$(BNAME) t1.txt t2.txt | cat -e
 
-clean:
-	@$(RM) *.o *.out
-	@$(RM) $(OBJS)
+b-buf:
+	$(CC) $(CFLAGS) -D BUFFER_SIZE=1 $(BSRC) b-main.c -o $(BNAME) && ./$(BNAME) t1.txt t2.txt | cat -e
 
-fclean: clean
-	@$(RM) $(NAME)
+fclean:
+	@$(RM) $(NAME) $(BNAME)
 	@clear
 
 re: fclean all
 
-.PHONY: all test clean fclean re
+.PHONY: all test fclean re b-test b-buf

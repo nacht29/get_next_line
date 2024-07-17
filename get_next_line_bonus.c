@@ -2,8 +2,8 @@
 
 char    *get_next_line(int fd)
 {
-	static node	*lst[OPEN_MAX];
-	char		*temp_buff[OPEN_MAX];
+	static node	*lst[OP];
+	char		*temp_buff[OP];
 	char		*next_line;
 	int			read_result;
 

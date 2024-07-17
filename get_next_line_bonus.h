@@ -12,6 +12,14 @@
 #  define BUFFER_SIZE 20
 # endif
 
+# ifdef __APPLE__
+#  define OP OPEN_MAX
+# elif __linux__
+#  define OP FOPEN_MAX
+# else
+#  error "Unsupported operating system"
+# endif
+
 # define TRUE 1
 #define FALSE 0
 
