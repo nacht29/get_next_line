@@ -14,7 +14,7 @@
 
 # ifdef __APPLE__
 #  define OP OPEN_MAX
-# elif __linux__
+# elif defined(_WIN32) || defined(_WIN64) || defined(__linux__)
 #  define OP FOPEN_MAX
 # else
 #  error "Unsupported operating system"
