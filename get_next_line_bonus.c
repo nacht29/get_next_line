@@ -108,7 +108,7 @@ char	*extract_line(node *lst, char **temp_buff)
 		else
 		{
 			line = process_newline_node(lst, temp_buff, line);
-			return (line);
+			break;
 		}
 		lst = lst->next;
 	}
