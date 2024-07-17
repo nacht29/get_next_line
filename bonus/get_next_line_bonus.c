@@ -1,24 +1,24 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char    *get_next_line(int fd)
 {
-	static node	*lst;
-	char		*temp_buff;
+	static node	*lst[OPEN_MAX];
+	char		*temp_buff[OPEN_MAX];
 	char		*next_line;
 	int			read_result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL);
-	temp_buff = NULL;
-	read_result = read_to_list(&lst, fd);
-	if (read_result < 0 || (read_result == 0 && lst == NULL))
+	temp_buff[fd] = NULL;
+	read_result = read_to_list(&lst[fd], fd);
+	if (read_result < 0 || (read_result == 0 && lst[fd] == NULL))
 		return (NULL);
-	next_line = extract_line(lst, &temp_buff);
-	free_list(&lst);
-	if (temp_buff != NULL)
+	next_line = extract_line(lst[fd], &temp_buff[fd]);
+	free_list(&lst[fd]);
+	if (temp_buff[fd] != NULL)
 	{
-		add_node(&lst, temp_buff);
-		free(temp_buff);
+		add_node(&lst[fd], temp_buff[fd]);
+		free(temp_buff[fd]);
 	}
 	return (next_line);
 }

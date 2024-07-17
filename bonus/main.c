@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,14 +9,15 @@ int main(int argc, char *argv[])
 		return (1);
 	fd = open(argv[1], O_RDONLY);
 
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s", line);
-		free(line);
-	}
+	// while ((line = get_next_line(fd)) != NULL)
+	// {
+	// 	printf("%s", line);
+	// 	free(line);
+	// }
 
-	// line = get_next_line(fd);
-	// printf("%s\n", line);
+	line = get_next_line(fd);
+	printf("%s\n", line);
+	free(line);
 	// if (line == NULL)
 	// 	printf("NULL\n");
 }
