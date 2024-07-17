@@ -39,7 +39,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (final_str);
 }
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strchr(const char *s, int c)
 {
 	char	ref;
 	char	*temp;
@@ -49,12 +49,10 @@ char	*ft_strchr(const char *s, int c)
 	while (*temp)
 	{
 		if (*temp == ref)
-			return (temp);
+			return (TRUE);
 		temp++;
 	}
-	if (c == '\0')
-		return (temp);
-	return (NULL);
+	return (FALSE);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -66,12 +64,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	strt = (size_t)start;
-	if (strt > ft_strlen(s))
-		return (ft_strjoin("", "")); //use strdup here
-	if (len > (ft_strlen(s) - strt + 1))
-		holder = malloc(ft_strlen(s) - strt + 2);
-	else
-		holder = malloc(len + 1);
+	holder = malloc(len + 1);
 	if (!holder)
 		return (NULL);
 	i = 0;
@@ -84,13 +77,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (holder);
 }
 
-int	find_newline(node *lst, int fd)
+void	free_list(node **lst)
 {
-	while (lst)
+	node *temp;
+	node *current;
+
+	if (!lst || !(*lst))
+		return ;
+	current = *lst;
+	while (current)
 	{
-		if (ft_strchr(lst->str, '\n'))
-			return (TRUE);
-		lst = lst->next;
+		temp = current->next;
+		free(current->str);
+		free(current);
+		current = temp;
 	}
-	return (FALSE);
+	(*lst) = NULL;
 }
