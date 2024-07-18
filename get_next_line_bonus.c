@@ -3,22 +3,22 @@
 char    *get_next_line(int fd)
 {
 	static node	*lst[OP];
-	char		*temp_buff[OP];
+	char		*temp_buff;
 	char		*next_line;
 	int			read_result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL);
-	temp_buff[fd] = NULL;
+	temp_buff = NULL;
 	read_result = read_to_list(&lst[fd], fd);
 	if (read_result < 0 || (read_result == 0 && lst[fd] == NULL))
 		return (NULL);
-	next_line = extract_line(lst[fd], &temp_buff[fd]);
+	next_line = extract_line(lst[fd], &temp_buff);
 	free_list(&lst[fd]);
-	if (temp_buff[fd] != NULL)
+	if (temp_buff != NULL)
 	{
-		add_node(&lst[fd], temp_buff[fd]);
-		free(temp_buff[fd]);
+		add_node(&lst[fd], temp_buff);
+		free(temp_buff);
 	}
 	return (next_line);
 }

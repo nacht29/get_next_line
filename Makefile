@@ -9,7 +9,7 @@ BSRC =	get_next_line_bonus.c \
 
 CC			= cc
 RM			= rm -f
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g -pg
 
 test: 
 	$(CC) $(CFLAGS) $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt | cat -e
