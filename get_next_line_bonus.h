@@ -14,30 +14,30 @@
 
 # ifdef __APPLE__
 #  define OP OPEN_MAX
-# elif defined(_WIN32) || defined(_WIN64) || defined(__linux__)
+# elif _WIN32 || _WIN64 || __linux__
 #  define OP FOPEN_MAX
 # else
 #  error "Unsupported operating system"
 # endif
 
 # define TRUE 1
-#define FALSE 0
+# define FALSE 0
 
-typedef struct linked_list
+typedef struct s_linked_list
 {
-	char				*str;
-	struct linked_list	*next;
-}	node;
+	char					*str;
+	struct s_linked_list	*next;
+}	t_node;
 
 char	*get_next_line(int fd);
-int		read_to_list(node **lst, int fd);
-void	add_node(node **lst, char *buffer);
-char	*extract_line(node *lst, char **temp_buff);
-void	free_list(node **lst);
+int		read_to_list(t_node **lst, int fd);
+void	add_node(t_node **lst, char *buffer);
+char	*extract_line(t_node *lst, char **temp_buff);
+void	free_list(t_node **lst);
 
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	free_list(node **lst);
+void	free_list(t_node **lst);
 #endif

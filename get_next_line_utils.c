@@ -7,7 +7,7 @@ size_t	ft_strlen(const char *s)
 	counter = 0;
 	while (s[counter])
 		counter++;
-	return(counter);
+	return (counter);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -17,11 +17,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*holder;
 
 	if (!s1 || !s2)
-		return(NULL);
+		return (NULL);
 	total_size = ft_strlen((char *)s1) + ft_strlen((char *)s2);
 	holder = malloc(total_size + 1);
 	if (!holder)
-		return(NULL);
+		return (NULL);
 	final_str = holder;
 	while (*s1)
 	{
@@ -77,10 +77,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (holder);
 }
 
-void	free_list(node **lst)
+void	free_list(t_node **lst)
 {
-	node *temp;
-	node *current;
+	t_node	*temp;
+	t_node	*current;
 
 	if (!lst || !(*lst))
 		return ;

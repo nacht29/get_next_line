@@ -1,11 +1,11 @@
 #include "get_next_line_bonus.h"
 
-char    *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static node	*lst[OP];
-	char		*temp_buff;
-	char		*next_line;
-	int			read_result;
+	static t_node	*lst[OP];
+	char			*temp_buff;
+	char			*next_line;
+	int				read_result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
 		return (NULL);
@@ -23,11 +23,11 @@ char    *get_next_line(int fd)
 	return (next_line);
 }
 
-int read_to_list(node **lst, int fd)
+int	read_to_list(t_node **lst, int fd)
 {
 	int		char_read;
 	char	*buffer;
-	node	*current;
+	t_node	*current;
 
 	while (1)
 	{
@@ -51,12 +51,12 @@ int read_to_list(node **lst, int fd)
 	}
 }
 
-void	add_node(node **lst, char *buffer)
+void	add_node(t_node **lst, char *buffer)
 {
-	node	*new_node;
-	node	*end;
+	t_node	*new_node;
+	t_node	*end;
 
-	new_node = (node *)malloc(sizeof(node));
+	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
 		return ;
 	new_node->str = ft_strjoin("", buffer);
@@ -72,7 +72,7 @@ void	add_node(node **lst, char *buffer)
 	end->next = new_node;
 }
 
-static char	*process_newline_node(node *lst, char **temp_buff, char *line)
+static char	*process_newline_node(t_node *lst, char **temp_buff, char *line)
 {
 	size_t	i;
 	char	*temp;
@@ -90,7 +90,7 @@ static char	*process_newline_node(node *lst, char **temp_buff, char *line)
 	return (new_line);
 }
 
-char	*extract_line(node *lst, char **temp_buff)
+char	*extract_line(t_node *lst, char **temp_buff)
 {
 	char	*line;
 	char	*temp;
@@ -108,7 +108,7 @@ char	*extract_line(node *lst, char **temp_buff)
 		else
 		{
 			line = process_newline_node(lst, temp_buff, line);
-			break;
+			break ;
 		}
 		lst = lst->next;
 	}
