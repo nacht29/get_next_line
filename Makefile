@@ -12,7 +12,7 @@ RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror -g -pg
 
 test: 
-	$(CC) $(CFLAGS) $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt | cat -e
+	$(CC) $(CFLAGS) $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt
 
 buf: 
 	$(CC) $(CFLAGS) -D BUFFER_SIZE=1 $(SRC) main.c -o $(NAME) && ./$(NAME) test.txt | cat -e
