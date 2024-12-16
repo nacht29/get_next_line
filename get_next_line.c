@@ -23,6 +23,14 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
+/*
+*goes thru the linked list to see if any nodes contain newline
+	- return if node contain newline
+	- keep reading until the next newline
+
+*reads BUFFER_SIZE characters into buffer and store buffer as a 
+new node in the linked lis
+*/
 int	read_to_list(t_node **lst, int fd)
 {
 	int		char_read;
@@ -51,6 +59,16 @@ int	read_to_list(t_node **lst, int fd)
 	}
 }
 
+/*
+*strjoin is used in place of strdup because of function limit
+(strjoin is reused multiple times in this project)
+*
+*malloc a node and duplicate buffer using strjoin
+store the buffer into new node
+*
+*if list is empty save new node as first node
+*else save new node as last node
+*/
 void	add_node(t_node **lst, char *buffer)
 {
 	t_node	*new_node;
